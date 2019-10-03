@@ -1,4 +1,5 @@
 using System;
+using LoggingKata;
 using Xunit;
 
 namespace LoggingKata.Test
@@ -10,12 +11,23 @@ namespace LoggingKata.Test
         {
             // TODO: Complete Something, if anything
         }
+     
+       
 
-        [Theory]
-        [InlineData("Example")]
-        public void ShouldParse(string str)
+        [Fact]
+        public void ShouldParseFact()
         {
-            // TODO: Complete Should Parse
+            var taco = new TacoParser();
+            var str = "34.073638, -84.677017,Taco Bell Acwort...";
+            var tacoBell = new TacoBell();
+
+            tacoBell.Name = "Taco Bell Acwort...";
+            var expected = tacoBell.Name;
+
+            var actual = taco.Parse(str);
+
+
+            Assert.Equal(actual.Name, expected); 
         }
 
         [Theory]
@@ -23,7 +35,7 @@ namespace LoggingKata.Test
         [InlineData("")]
         public void ShouldFailParse(string str)
         {
-            // TODO: Complete Should Fail Parse
+            
         }
     }
 }
