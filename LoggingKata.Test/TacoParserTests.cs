@@ -9,10 +9,18 @@ namespace LoggingKata.Test
         [Fact]
         public void ShouldDoSomething()
         {
-            // TODO: Complete Something, if anything
+            //arrange
+            var taco = new TacoParser();
+            var str = "34.073638, -84.677017,Taco Bell Acwort...";
+
+            //act
+            var actual = taco.Parse(str);
+
+            //assert
+            Assert.NotNull(actual);
         }
-     
-       
+
+
 
         [Fact]
         public void ShouldParseFact()
@@ -27,15 +35,25 @@ namespace LoggingKata.Test
             var actual = taco.Parse(str);
 
 
-            Assert.Equal(actual.Name, expected); 
+            Assert.Equal(actual.Name, expected);
         }
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        public void ShouldFailParse(string str)
+        [Fact]
+        public void ShouldFailParse()
         {
-            
+            //arrange
+            var tester = new TacoParser();
+            var str1 = "34.073638, -84.677017,Taco Bell Acwort..., dis is bad data., dis is moar bad data., shallnt work.";
+            var bish = new TacoBell();
+
+            bish.Name = "Taco Bell Acwort...";
+            var expected = bish.Name; 
+            //act
+            var actual = tester.Parse(str1);
+
+            //assert
+            Assert.Equal(actual.Name, expected);
+
         }
     }
 }
